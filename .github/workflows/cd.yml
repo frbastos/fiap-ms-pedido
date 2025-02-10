@@ -37,6 +37,7 @@ jobs:
         run: |
           docker build -t ar989827/ms-pedido:${{ github.sha }} .
           docker push ar989827/ms-pedido:${{ github.sha }}
+          docker push ar989827/ms-pedido:latest
 
       # Configurar kubectl para acessar o cluster EKS
       - name: Configure AWS credentials
