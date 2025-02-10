@@ -17,8 +17,9 @@ CREATE TABLE IF NOT EXISTS cliente (
 CREATE TABLE IF NOT EXISTS pedido (
     id BIGSERIAL,
     cliente_id BIGINT,
-    state VARCHAR(255) NOT NULL,
+    status VARCHAR(255) NOT NULL,
     preco_total DECIMAL(19,2) NOT NULL,
+    transacao_pagamento_id VARCHAR(255),
     status_confirmacao_pagamento VARCHAR(255) NOT NULL,
     data_criacao TIMESTAMP NOT NULL,
     numero_pedido DECIMAL(19,1) NOT NULL,
