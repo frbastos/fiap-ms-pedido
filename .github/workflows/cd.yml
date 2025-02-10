@@ -35,7 +35,7 @@ jobs:
       # Construir e enviar a imagem para o Docker Hub
       - name: Build and push Docker image
         run: |
-          docker build -t ar989827/ms-pedido:${{ github.sha }} .
+          docker build -t ar989827/ms-pedido:${{ github.sha }} -t ar989827/ms-pedido:latest .
           docker push ar989827/ms-pedido:${{ github.sha }}
           docker push ar989827/ms-pedido:latest
 
