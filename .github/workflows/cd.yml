@@ -53,5 +53,5 @@ jobs:
       # Atualizar deployment no EKS
       - name: Update Deployment
         run: |
-          kubectl set image deployment/app-deployment app-container=ar989827/ms-pedido:${{ github.sha }}
-          kubectl rollout status deployment/app-deployment
+          kubectl set image deployment/pedido-deployment app-container=ar989827/ms-pedido:${{ github.sha }}
+          kubectl rollout status deployment/pedido-deployment
