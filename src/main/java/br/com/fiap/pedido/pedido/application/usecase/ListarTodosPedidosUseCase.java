@@ -8,6 +8,6 @@ public interface ListarTodosPedidosUseCase {
 
     List<Pedido> listarTodos();
 
-    List<Pedido> listarTodosOrdenados();
+    List<Pedido> listarTodosNaoFinalizados();
 
 }

@@ -3,8 +3,8 @@ package br.com.fiap.pedido.pedido.infra.gateways.mappers;
 import java.util.List;
 
 import br.com.fiap.pedido.cliente.domain.entities.Cliente;
-import br.com.fiap.pedido.cliente.infra.api.gateway.mappers.ClienteEntityMapper;
-import br.com.fiap.pedido.cliente.infra.api.persistence.ClienteEntity;
+import br.com.fiap.pedido.cliente.infra.gateway.mappers.ClienteEntityMapper;
+import br.com.fiap.pedido.cliente.infra.persistence.ClienteEntity;
 import br.com.fiap.pedido.pedido.domain.entities.ItemPedido;
 import br.com.fiap.pedido.pedido.domain.entities.Pedido;
 import br.com.fiap.pedido.pedido.domain.valueobjects.InformacoesPagamento;

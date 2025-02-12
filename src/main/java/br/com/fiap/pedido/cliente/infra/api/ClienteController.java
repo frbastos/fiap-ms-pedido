@@ -22,7 +22,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class ClienteController {
 
-    private final BuscarClienteUseCase clienteService;
+    private final BuscarClienteUseCase buscarClienteUseCase;
     private final RegistrarClienteUseCase registrarCustomerUseCase;
 
     @PostMapping("")
@@ -33,8 +33,8 @@ public class ClienteController {
     }
 
     @GetMapping("")
-    public ClienteResponse searchCustomer(@RequestParam(value = "documento", required = false) String documento) {
-        Cliente customer = this.clienteService.buscarPorDocumento(documento).orElseThrow(NaoEncontradoException::new);
+    public ClienteResponse searchCustomer(@RequestParam(required = false) String documento) {
+        Cliente customer = this.buscarClienteUseCase.buscarPorDocumento(documento).orElseThrow(NaoEncontradoException::new);
         return ClienteDTOMapper.toResponse(customer);
     }
 

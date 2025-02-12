@@ -1,8 +1,10 @@
 package br.com.fiap.pedido.cliente.domain.entities;
 
+import lombok.Builder;
 import lombok.Getter;
 
 @Getter
+@Builder
 public class Cliente {
 
     private Long id;

@@ -19,8 +19,8 @@ public class ListarTodosPedidosUseCaseImpl implements ListarTodosPedidosUseCase 
     }
 
     @Override
-    public List<Pedido> listarTodosOrdenados() {
-        return orderGateway.listarTodosOrdenados();
+    public List<Pedido> listarTodosNaoFinalizados() {
+        return orderGateway.listarTodosNaoFinalizados();
     }
 
 

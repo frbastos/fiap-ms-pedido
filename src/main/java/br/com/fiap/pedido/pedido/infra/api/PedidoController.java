@@ -86,7 +86,7 @@ public class PedidoController {
     }
 
     @GetMapping({ "/{id}" })
-    public PedidoResponse getOrderById(@PathVariable("id") Long id) {
+    public PedidoResponse getOrderById(@PathVariable Long id) {
         return this.mapToResponse((Pedido) this.buscarPedidoPorIdUseCase.buscar(id).get());
     }
 
@@ -107,7 +107,7 @@ public class PedidoController {
 
     @GetMapping({ "/follow-up" })
     public ResponseEntity<PedidoAgrupoadoResponse> findFollowUp() {
-        List<Pedido> orders = this.listarTodosPedidosUseCase.listarTodosOrdenados();
+        List<Pedido> orders = this.listarTodosPedidosUseCase.listarTodosNaoFinalizados();
         return ResponseEntity.status(HttpStatus.OK).body(PedidoAgrupadoMapper.toPedidos(orders));
     }
 

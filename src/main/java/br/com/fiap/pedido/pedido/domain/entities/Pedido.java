@@ -40,24 +40,6 @@ public class Pedido {
         this.precoTotal = this.calculateTotalPrice(itens);
     }
 
-    // public Pedido(
-    //     Long id, 
-    //     Cliente cliente, 
-    //     List<ItemPedido> itens, 
-    //     Long numeroPedido, 
-    //     InformacoesPagamento informacoesPagamento) {
-
-    //     this(
-    //         id, 
-    //         cliente, 
-    //         itens, 
-    //         StatusPedido.PENDENTE, 
-    //         BigDecimal.ZERO,
-    //         LocalDateTime.now(), numeroPedido,
-    //         InformacoesPagamento informacoesPagamento);
-    //     this.precoTotal = this.calculateTotalPrice(itens);
-    // }
-
     public BigDecimal calculateTotalPrice(List<ItemPedido> itens) {
         return itens.stream().map(ItemPedido::getPrecoTotal).reduce(BigDecimal.ZERO,
                 BigDecimal::add);
