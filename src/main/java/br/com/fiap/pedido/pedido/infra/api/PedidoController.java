@@ -5,9 +5,9 @@ import java.util.List;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -88,10 +88,11 @@ public class PedidoController {
         return this.mapToResponse(pedido);
     }
 
-    @PatchMapping({ "/{orderNumber}/state" })
-    public PedidoResponse updateOrderState(@PathVariable("orderNumber") Long orderNumber,
-            @RequestParam(value = "updateState", required = true) StatusPedido state) {
-        Pedido updateState = this.atualizarStatusPedidoUseCase.atualizar(orderNumber, state);
+    @PutMapping({ "/{orderNumber}/status" })
+    public PedidoResponse updateOrderState(
+            @PathVariable Long orderNumber,
+            @RequestParam(required = true) StatusPedido valor) {
+        Pedido updateState = this.atualizarStatusPedidoUseCase.atualizar(orderNumber, valor);
         return this.mapToResponse(updateState);
     }
 
