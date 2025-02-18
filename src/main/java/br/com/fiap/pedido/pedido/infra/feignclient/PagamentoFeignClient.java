@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import br.com.fiap.pedido.pedido.infra.feignclient.dto.QRCodeRequest;
 import br.com.fiap.pedido.pedido.infra.feignclient.dto.QRCodeResponse;
 
-@FeignClient(name = "pagamentosClient", url = "http://localhost:8081")
+@FeignClient(name = "pagamentosClient", url = "${pagamentos.service.url}")
 public interface PagamentoFeignClient{
 
     @PostMapping("/pagamentos/qrcode")

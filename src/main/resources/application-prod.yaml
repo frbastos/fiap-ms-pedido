@@ -14,3 +14,11 @@ spring:
         format_sql: false
   flyway:
     locations: classpath:db/migration/postgres
+
+pagamentos:
+    service:
+        url: http://a3d21b649f7bf4f05a5a4b6b714d225b-446223114.us-east-1.elb.amazonaws.com
+
+producao:
+    service:
+        url: http://a4c445b217c104f46aaadc1eda4be52f-480546270.us-east-1.elb.amazonaws.com

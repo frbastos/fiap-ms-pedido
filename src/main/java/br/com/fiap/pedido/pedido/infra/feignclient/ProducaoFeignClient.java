@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import br.com.fiap.pedido.pedido.infra.feignclient.dto.PedidoCozinhaRequest;
 import jakarta.validation.Valid;
 
-@FeignClient(name = "producaoClient", url = "http://localhost:8082")
+@FeignClient(name = "producaoClient", url = "${producao.service.url}")
 public interface ProducaoFeignClient {
 
     @PostMapping("/cozinha/pedido")
