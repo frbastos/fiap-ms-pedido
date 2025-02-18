@@ -17,3 +17,11 @@ spring:
         format_sql: true
   flyway:
     locations: classpath:db/migration/h2
+
+pagamentos:
+    service:
+        url: http://localhost:8081
+
+producao:
+    service:
+        url: http://localhost:8082
