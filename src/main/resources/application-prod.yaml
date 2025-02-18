@@ -22,3 +22,7 @@ pagamentos:
 producao:
     service:
         url: http://ad66fd87e2e5d4f3b95fed69cdeef902-710699114.us-east-1.elb.amazonaws.com
+
+app:
+  callback:
+    url: http://a9f3a309d03134b829f55baa7cb25c2e-670484907.us-east-1.elb.amazonaws.com

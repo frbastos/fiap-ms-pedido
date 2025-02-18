@@ -25,3 +25,7 @@ pagamentos:
 producao:
     service:
         url: http://localhost:8082
+
+app:
+  callback:
+    url: http://localhost:8080
