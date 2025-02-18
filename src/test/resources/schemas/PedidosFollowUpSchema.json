@@ -1,0 +1,22 @@
+{
+    "$schema": "http://json-schema.org/draft-06/schema#",
+    "title": "Pedido Response",
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+        "readyOrders": {
+            "type": "array"
+        },
+        "preparingOrders": {
+            "type": "array"
+        },
+        "receivedOrders": {
+            "type": ["array"]
+        }
+      },
+    "required": [
+      "readyOrders", 
+      "preparingOrders",
+      "receivedOrders"
+    ]
+}

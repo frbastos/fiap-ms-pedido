@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import br.com.fiap.pedido.cliente.infra.api.persistence.ClienteEntity;
+import br.com.fiap.pedido.cliente.infra.persistence.ClienteEntity;
 import br.com.fiap.pedido.pedido.domain.valueobjects.StatusConfirmacaoPagamento;
 import br.com.fiap.pedido.pedido.domain.valueobjects.StatusPedido;
 import jakarta.persistence.CascadeType;

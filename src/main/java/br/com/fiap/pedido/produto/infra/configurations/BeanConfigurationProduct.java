@@ -17,7 +17,6 @@ import br.com.fiap.pedido.produto.application.RemoverProdutoUseCase;
 import br.com.fiap.pedido.produto.application.RemoverProdutoUseCaseImpl;
 import br.com.fiap.pedido.produto.application.gateway.ProdutoGateway;
 import br.com.fiap.pedido.produto.infra.api.dto.ProdutoCommandMapper;
-import br.com.fiap.pedido.produto.infra.api.dto.ProdutoDTOMapper;
 import br.com.fiap.pedido.produto.infra.gateways.ProdutoRepositoryGateway;
 import br.com.fiap.pedido.produto.infra.gateways.mappers.ProdutoEntityMapper;
 import br.com.fiap.pedido.produto.infra.persistence.ProdutoRepository;
@@ -58,11 +57,6 @@ public class BeanConfigurationProduct {
     @Bean
     AtualizarProdutoUseCase updateProductUseCase(ProdutoGateway produtoGateway) {
         return new AtualizarProdutoUseCaseImpl(produtoGateway);
-    }
-
-    @Bean
-    ProdutoDTOMapper productDTOMapper() {
-        return new ProdutoDTOMapper();
     }
 
     @Bean

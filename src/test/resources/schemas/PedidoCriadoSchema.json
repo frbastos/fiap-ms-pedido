@@ -1,0 +1,20 @@
+{
+    "$schema": "http://json-schema.org/draft-06/schema#",
+    "title": "Pedido Response",
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "numeroPedido": {
+        "type": "integer"
+      },
+      "qrcode": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "numeroPedido",
+      "qrcode"
+    ]
+  }
+  
+  

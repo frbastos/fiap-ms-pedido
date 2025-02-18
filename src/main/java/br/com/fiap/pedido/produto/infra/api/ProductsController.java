@@ -35,7 +35,6 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class ProductsController {
 
-    private final ProdutoDTOMapper productDTOMapper;
     private final ProdutoCommandMapper productCommandMapper;
     private final CriarProdutoUseCase createProductUseCase;
     private final BuscarProdutoPorIdUseCase getProductByIdUseCase;
@@ -47,33 +46,33 @@ public class ProductsController {
 
     @PostMapping("")
     public ProdutoResponse criarProduto(@RequestBody CriaProdutoRequest request) {
-        Produto productObjDomain = productDTOMapper.toProduct(request);
+        Produto productObjDomain = ProdutoDTOMapper.toProduct(request);
         Produto product = createProductUseCase.criar(productObjDomain);
-        return productDTOMapper.toResponse(product);
+        return ProdutoDTOMapper.toResponse(product);
     }
 
     @PutMapping("/{id}")
-    public ProdutoResponse atualizarProduto(@PathVariable("id") Long id, @RequestBody AtualizaProdutoRequest update) {
+    public ProdutoResponse atualizarProduto(@PathVariable Long id, @RequestBody AtualizaProdutoRequest update) {
         AtualizaProdutoCommand updateCommand = productCommandMapper.toAtualizaProdutoCommand(id, update);
         Produto product = updateProductUseCase.atualizar(updateCommand);
-        return productDTOMapper.toResponse(product);
+        return ProdutoDTOMapper.toResponse(product);
     }
 
     @GetMapping("/{id}")
-    public ProdutoResponse buscarProdutoPorId(@PathVariable("id") Long id) {
+    public ProdutoResponse buscarProdutoPorId(@PathVariable Long id) {
         Produto product = this.getProductByIdUseCase.buscarPorId(id).orElseThrow(NaoEncontradoException::new);
-        return productDTOMapper.toResponse(product);
+        return ProdutoDTOMapper.toResponse(product);
     }
 
     @GetMapping("")
-    public List<ProdutoResponse> listarTodosProdutos(@RequestParam(value = "category", required = false) Categoria category) {
+    public List<ProdutoResponse> listarTodosProdutos(@RequestParam(required = false) Categoria category) {
         List<Produto> products;
         if (category != null) {
             products = getProductsByCategoryUseCase.buscarPorCategoria(category);
         }else{
             products = getAllProductsUseCase.listarTodos();
         }
-        return products.stream().map(productDTOMapper::toResponse).toList();
+        return products.stream().map(ProdutoDTOMapper::toResponse).toList();
     }
 
     @DeleteMapping("/{id}")

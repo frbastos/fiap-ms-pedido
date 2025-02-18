@@ -7,9 +7,9 @@ import br.com.fiap.pedido.pedido.domain.entities.Pedido;
 
 public class BuscarPedidoPorIdUseCaseImpl implements BuscarPedidoPorIdUseCase {
 
-   private final PedidoGateway orderGateway;
+    private final PedidoGateway orderGateway;
 
-    public BuscarPedidoPorIdUseCaseImpl(PedidoGateway orderGateway){
+    public BuscarPedidoPorIdUseCaseImpl(PedidoGateway orderGateway) {
         this.orderGateway = orderGateway;
     }
 

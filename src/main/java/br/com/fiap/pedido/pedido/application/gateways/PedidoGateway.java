@@ -18,7 +18,7 @@ public interface PedidoGateway {
 
     Optional<Pedido> buscarPorNumeroPedido(Long numeroPedido) throws NaoEncontradoException;
 
-    List<Pedido> listarTodosOrdenados();
+    List<Pedido> listarTodosNaoFinalizados();
 
     Long buscarNumeroPedido();
 

@@ -1,0 +1,37 @@
+{
+    "$schema": "http://json-schema.org/draft-06/schema#",
+    "title": "Pedido Response",
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+        "id": {
+            "type": "integer"
+        },
+        "dataCriacao": {
+            "type": "string"
+        },
+        "cliente": {
+            "type": ["object", "null"]
+        },
+        "status": {
+            "type": "string"
+        },
+        "precoTotal": {
+            "type": "number"
+        },
+        "statusConfirmacaoPagamento": {
+            "type": "string"
+        },
+        "numeroPedido": {
+          "type": "number"
+      }
+    },
+    "required": [
+      "id", 
+      "dataCriacao",
+      "status",
+      "precoTotal",
+      "statusConfirmacaoPagamento",
+      "numeroPedido"
+    ]
+}

@@ -1,16 +1,16 @@
-name: Deploy to Docker
+name: CD - Deploy to Docker and EKS
 
 on:
-  push:
-    # branches:
-    #   - main 
-  pull_request:
-    branches:
-      - main
+  workflow_run:
+    workflows: ["CI - Run Tests"]
+    types:
+      - completed
 
 jobs:
   deploy:
+    name: Deploy to Docker and EKS
     runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     steps:
 
       #Checkout do código

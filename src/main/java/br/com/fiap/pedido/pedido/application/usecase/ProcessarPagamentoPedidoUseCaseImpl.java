@@ -27,7 +27,7 @@ public class ProcessarPagamentoPedidoUseCaseImpl implements ProcessarPagamentoPe
                         () -> new NaoEncontradoException("Pedido não encontrado com esse ID: " + command.pedidoId()));
 
         pedido.atualizaInformacoesPagamento(command.transacaoId(), command.statusPagamento());
-        pedidoGateway.salvar(pedido);
+        pedido = pedidoGateway.salvar(pedido);
 
         if (pedido.isAprovado()) {
             enviarPedidoCozinhaUseCase.enviar(pedido);

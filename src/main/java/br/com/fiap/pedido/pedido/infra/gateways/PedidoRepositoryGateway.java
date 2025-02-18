@@ -55,8 +55,8 @@ public class PedidoRepositoryGateway implements PedidoGateway {
     }
 
     @Override
-    public List<Pedido> listarTodosOrdenados() {
-        List<PedidoEntity> orderDesc = this.repository.findAllNumeroPedido();
+    public List<Pedido> listarTodosNaoFinalizados() {
+        List<PedidoEntity> orderDesc = this.repository.findAllNaoFinalizados();
         return PedidoEntityMapper.toObjects(orderDesc);
     }
 
