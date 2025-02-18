@@ -10,7 +10,7 @@ jobs:
   deploy:
     name: Deploy to Docker and EKS
     runs-on: ubuntu-latest
-    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    if: ${{ github.ref == 'refs/heads/main' && github.event.workflow_run.conclusion == 'success' }}
     steps:
 
       #Checkout do código
