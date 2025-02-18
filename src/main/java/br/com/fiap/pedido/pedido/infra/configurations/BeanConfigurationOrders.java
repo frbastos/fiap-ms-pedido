@@ -23,8 +23,6 @@ import br.com.fiap.pedido.pedido.application.usecase.ListarTodosPedidosUseCase;
 import br.com.fiap.pedido.pedido.application.usecase.ListarTodosPedidosUseCaseImpl;
 import br.com.fiap.pedido.pedido.application.usecase.ProcessarPagamentoPedidoUseCase;
 import br.com.fiap.pedido.pedido.application.usecase.ProcessarPagamentoPedidoUseCaseImpl;
-import br.com.fiap.pedido.pedido.infra.feignclient.PagamentoFeignClient;
-import br.com.fiap.pedido.pedido.infra.gateways.PagamentoGatewayImpl;
 import br.com.fiap.pedido.pedido.infra.gateways.PedidoRepositoryGateway;
 import br.com.fiap.pedido.pedido.infra.persistence.PedidoRepository;
 import br.com.fiap.pedido.produto.application.BuscarProdutoPorIdUseCase;
@@ -69,11 +67,6 @@ public class BeanConfigurationOrders {
     @Bean
     BuscarPedidoPorNumeroPedidoUseCase getOrderByOrderNumber(PedidoGateway orderGateway) {
         return new BuscarPedidoPorNumeroPedidoUseCaseImpl(orderGateway);
-    }
-
-    @Bean
-    PagamentoGateway pagamentoGateway(PagamentoFeignClient pagamentoFeignClient){
-        return new PagamentoGatewayImpl(pagamentoFeignClient);
     }
 
     @Bean
