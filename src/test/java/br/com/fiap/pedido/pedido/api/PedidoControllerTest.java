@@ -73,7 +73,7 @@ public class PedidoControllerTest {
         @BeforeEach
         void setUp() {
                 autoCloseable = MockitoAnnotations.openMocks(this);
-                pedidoController = new PedidoController(listarTodosPedidosUseCase, buscarPedidoPorIdUseCase,
+                pedidoController = new PedidoController(listarTodosPedidosUseCase,
                                 atualizarStatusPedidoUseCase, criarPedidoUseCase, buscarPedidoPorNumeroPedidoUseCase,
                                 gerarQRCodePagamentoUseCase, processarPagamentoPedidoUseCase);
                 mockMvc = MockMvcBuilders.standaloneSetup(pedidoController)
@@ -109,25 +109,6 @@ public class PedidoControllerTest {
 
                 verify(criarPedidoUseCase).criar(any());
                 verify(gerarQRCodePagamentoUseCase).gerar(anyLong(), any());
-
-        }
-
-        @Test
-        void devePermitirBuscarPedidoPorId() throws Exception {
-
-                Long pedidoId = 1L;
-                Pedido pedido = PedidoHelper.gerar(pedidoId, StatusPedido.PENDENTE);
-
-                when(buscarPedidoPorIdUseCase.buscar(pedidoId))
-                                .thenReturn(Optional.of(pedido));
-
-                mockMvc.perform(
-                                get("/pedidos/{id}", pedidoId)
-                                                .contentType(MediaType.APPLICATION_JSON))
-                                .andExpect(status().isOk())
-                                .andExpect(jsonPath("$.numeroPedido").value(pedido.getNumeroPedido()));
-
-                verify(buscarPedidoPorIdUseCase).buscar(anyLong());
 
         }
 

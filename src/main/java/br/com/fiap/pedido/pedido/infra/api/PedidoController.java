@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.fiap.pedido.pedido.application.exception.ErroAoGerarQRCodeException;
 import br.com.fiap.pedido.pedido.application.usecase.AtualizarStatusPedidoUseCase;
-import br.com.fiap.pedido.pedido.application.usecase.BuscarPedidoPorIdUseCase;
 import br.com.fiap.pedido.pedido.application.usecase.BuscarPedidoPorNumeroPedidoUseCase;
 import br.com.fiap.pedido.pedido.application.usecase.CriarPedidoUseCase;
 import br.com.fiap.pedido.pedido.application.usecase.GerarQRCodePagamentoUseCase;
@@ -44,11 +43,8 @@ import lombok.extern.slf4j.Slf4j;
 public class PedidoController {
 
     private final ListarTodosPedidosUseCase listarTodosPedidosUseCase;
-    private final BuscarPedidoPorIdUseCase buscarPedidoPorIdUseCase;
     private final AtualizarStatusPedidoUseCase atualizarStatusPedidoUseCase;
     private final CriarPedidoUseCase criarPedidoUseCase;
-    // private final SendQRCODEPaymentToThirdPartyUseCase
-    // sendQRCODEPaymentToThirdPartyUseCase;
     private final BuscarPedidoPorNumeroPedidoUseCase buscarPedidoPorNumeroPedidoUseCase;
     private final GerarQRCodePagamentoUseCase gerarQRCodePagamentoUseCase;
     private final ProcessarPagamentoPedidoUseCase processarPagamentoPedidoUseCase;
@@ -85,9 +81,11 @@ public class PedidoController {
                 .body(new PedidoCriadoResponse(pedidoCriado.getNumeroPedido(), qrcode));
     }
 
-    @GetMapping({ "/{id}" })
-    public PedidoResponse getOrderById(@PathVariable Long id) {
-        return this.mapToResponse((Pedido) this.buscarPedidoPorIdUseCase.buscar(id).get());
+    @GetMapping({ "/{numeroPedido}" })
+    public PedidoResponse getOrderByNumeroPedido(@PathVariable Long numeroPedido) {
+        Pedido pedido = this.buscarPedidoPorNumeroPedidoUseCase.buscar(numeroPedido)
+            .orElseThrow(() -> new NaoEncontradoException("pedido não encontrado"));
+        return this.mapToResponse(pedido);
     }
 
     @PatchMapping({ "/{orderNumber}/state" })
@@ -105,7 +103,7 @@ public class PedidoController {
                 orderPaymentStatus.getNumeroPedido(), orderPaymentStatus.getInformacoesPagamento().statusConfirmacaoPagamento()));
     }
 
-    @GetMapping({ "/follow-up" })
+    @GetMapping("/follow-up")
     public ResponseEntity<PedidoAgrupoadoResponse> findFollowUp() {
         List<Pedido> orders = this.listarTodosPedidosUseCase.listarTodosNaoFinalizados();
         return ResponseEntity.status(HttpStatus.OK).body(PedidoAgrupadoMapper.toPedidos(orders));

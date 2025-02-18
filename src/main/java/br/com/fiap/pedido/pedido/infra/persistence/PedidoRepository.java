@@ -12,6 +12,6 @@ public interface PedidoRepository extends JpaRepository<PedidoEntity, Long> {
     @Query("SELECT o FROM PedidoEntity o WHERE o.numeroPedido = :numeroPedido")
     Optional<PedidoEntity> findByNumeroPedido(@Param("numeroPedido") Long numeroPedido);
 
-    @Query(value = "SELECT * FROM pedido_entity WHERE STATE <> 'FINISHED'", nativeQuery = true)
+    @Query(value = "SELECT * FROM pedido WHERE status <> 'FINALIZADO'", nativeQuery = true)
     List<PedidoEntity> findAllNaoFinalizados();
 }
